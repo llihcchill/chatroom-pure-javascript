@@ -1,34 +1,24 @@
 var query = window.location.search;
 
 if (query.startsWith("?username=") == true) {
-  getUsername();
+  getQuery();
 }
 
 if (query.startsWith("?message=") == true) {
   const messageArea = document.getElementById("message-area");
 
   const message = document.createElement("p");
-  const messageContent = document.createTextNode(query);
+  const messageContent = document.createTextNode(getQuery());
   message.appendChild(messageContent);
 
   document.body.insertBefore(message, messageArea);
 }
 
-//document.getElementById("test").innerHTML = uname;
-//console.log(queryString);
+function getQuery() {
+  var query = window.location.search.replace(/^\?/, "");
+  query = window.location.search.replace(/=.*$/, "");
+  query = window.location.search.replace(/^[^=]*\=/, "");
 
-//console.log(username);
-
-function getUsername() {
-  var username = window.location.search.replace(/^\?/, "");
-  username = window.location.search.replace(/=.*$/, "");
-  username = window.location.search.replace(/^[^=]*\=/, "");
+  return query;
 }
 
-function undoCookie() {
-  var uname = document.cookie;
-  uname = uname.replace("name/", "");
-  uname = uname.replace("title=", "");
-
-  return uname;
-}
